@@ -33,4 +33,31 @@ Admins can manage bookings, customer accounts, reports, and financial operations
 ### 1. Clone the Repository
 ```bash
 git clone https://github.com/zeed200/Booking-Management-System.git
-cd booking-system
+cd Booking-Management-System
+```
+### 2. Create a Virtual Environment
+```bash
+python -m venv env
+source env/bin/activate  # On Windows use: env\Scripts\activate
+```
+### 3. Install Requirements
+```bash
+pip install -r requirements.txt
+```
+### 4. Apply Migrations
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+### 5. Create a Superuser (Admin Account)
+```bash
+python manage.py createsuperuser
+```   
+### 6. Run the Development Server
+```bash
+python manage.py runserver
+```
+### 7. Access the Application
+   
+- Frontend: http://127.0.0.1:8000
+- Admin Panel: http://127.0.0.1:8000/admin 
