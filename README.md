@@ -22,8 +22,15 @@ Admins can manage bookings, customer accounts, reports, and financial operations
 ## 🛠 Tech Stack
 
 - **Backend**: Django, Django Admin
-- **Database**: SQLite / PostgreSQL
+- **Database**: SQLite 
 - **Frontend**: HTML, Bootstrap, JavaScript, AJAX
 - **Other**: qrcode (Python library)
 
 ---
+
+## ⚙️ How to Run the Project
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/zeed200/Booking-Management-System.git
+cd booking-system
