@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+  <div class="cli-container" style="width: 900px;">
+    <div class="repos">
+      <input type="text" placeholder="بحث">
+      <span class="cli-btn"><i class="fas fa-search"></i></span>
+      <span class="cli-btn"><a href="{% url 'book_apa' %}"><i class="fas fa-add"></i></a></span>
+    </div>
+
+
+  <div class="data">
+    {% for ap in resapa %}
+    <div class="cusname" style="align-items: center;">
+      <p class="p_cli" style="position: static; font-weight: bolder;">{{ap.id}}&ThickSpace;&ThickSpace;:&ThickSpace;{{ap.customers}}</p>
+
+      <div class="cusname" style="align-items: center;">
+        <p class="p_cli" style="position: absolute; right: 625px; font-weight: bold;">{{ap.apartments}}</p>
+
+        <div class="cusname" style="align-items: center;">
+          <p class="p_cli" style="position: absolute; right: 760px; font-weight: bold;"> التاريخ </p>
+
+          <div class="cusname" style="align-items: center;">
+            <p class="p_cli" style="position: absolute; right: 810px; font-weight: 400;"> من: {{ap.login_date}} </p></div>
+
+            <div class="cusname" style="align-items: center;">
+              <p class="p_cli" style="position: absolute; right: 955px; font-weight: 400;"> إلى: {{ap.exit_date}} </p></div>
+
+
+      <div class="left_clt" style="position: absolute; right: 1130px; margin-bottom: 10px; background-color: #247dcf; padding: 5px; height: 40px;">
+        <a href="{% url 'apdate_apartment_book' ap.id %}">
+          <i name="apdate" method="POST">تعديل</i>
+        </a>
+      </div>  
+    
+      
+    </div>
+   
+  </div>
+  
+    
+    </div>
+    <hr>  
+    {%endfor%}
+ </div>
+  </div>
+  
+  
+ {% endblock %}
+
+  

@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container" style="margin-top: 5%;">
+    <h3 style="position: absolute; right: 29%;">تفاصيل الحجز</h3>
+    <div class="booking-details" style="direction: rtl; position: absolute; right: 23%; width: 25%; top: 22%;">
+        <label for="r_name" style="position: relative; left: 70%;">اسم العميل:</label>
+        <input type="text" id="r_name" value="{{ booking.customers.cus_name }}" readonly>
+        <input type="hidden" id="r_id" value="{{ booking.id }}" readonly>
+
+        <label for="r_chalih" style="position: relative; left: 70%; top: 2%;">رقم الشاليه:</label>
+        <input type="text" id="r_chalih" value="{{ booking.chalits }}" readonly>
+    </div>
+    <span class="cli-btn"><i class="fas fa-qrcode" id="qrScannerIcon" style="width: 7%; height: 10%; position: absolute; top: 50%; left: 62%; background-color: #006699; padding: 1%;"></i></span>
+
+    <h3 style="width: 55%; position: absolute; right: 30%; direction: rtl;">الأشخاص المرتبطين بالحجز</h3>
+    <table id="peopleTable" style="position: absolute; width: 40%; right: 55%; top: 20%; text-align: center;">
+        <thead style="background-color: #006699; color: white;">
+            <tr>
+                <th>م</th>
+                <th>اسم الشخص</th>
+                <th>العمر</th>
+                <th>رقم الهوية</th>
+            </tr>
+        </thead>
+        <tbody style="background-color: #CACCCE;">
+            {% for person in peo %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ person.peo_name }}</td>
+                <td>{{ person.peo_age }}</td>
+                <td>{{ person.peo_card_number }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div id="qrScannerContainer" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; background-color: white; padding: 20px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);">
+    <div id="qrScanner" style="width: 500px; height: 500px;"></div>
+    <button id="closeScanner" style="margin-top: 10px;">إغلاق</button>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script src="{% static 'js/minified/html5-qrcode.min.js' %}"></script>
+<script>
+  let qrCode = new Html5Qrcode('qrScanner');
+  let qrButton = document.querySelector('.fa-qrcode');
+  let qrScannerContainer = document.getElementById('qrScannerContainer');
+  let closeScannerButton = document.getElementById('closeScanner');
+
+  qrButton.addEventListener('click', function() {
+    qrScannerContainer.style.display = 'block'; // عرض العنصر الذي يحتوي على الكاميرا
+    qrCode.start({ facingMode: "environment" }, {
+      fps: 10,
+      qrbox: { width: 400, height: 400 } // تكبير الكاميرا إلى 400×400
+    },
+    qrCodeCallback
+    );
+  });
+
+  closeScannerButton.addEventListener('click', function() {
+    qrCode.stop().then(() => {
+      qrScannerContainer.style.display = 'none'; // إخفاء العنصر الذي يحتوي على الكاميرا
+    }).catch(err => {
+      console.error('Error stopping the QR code scanner:', err);
+    });
+  });
+
+  function qrCodeCallback(qrCodeMessage) {
+    let personId = qrCodeMessage.trim();
+    console.log("Person ID: ", personId);
+
+    const rid = $('#r_id').val();
+    $.ajax({
+    dataType:'json',
+    url:'/save_person',
+    data:{'personId':personId,
+          'rid':rid},
+    
+    success: function(data){
+      if (data.ch){
+        window.location.reload();
+      }
+      else{
+        alert("الأسم غير موجود في هذا الحجز")
+      }
+      
+    }
+  })
+
+   
+    qrCode.stop().then(() => {
+      qrScannerContainer.style.display = 'none';
+      alert("نجحت العملية");
+    }).catch(err => {
+      console.error('Error stopping the QR code scanner:', err);
+    });
+  }
+</script>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=divce-width, initial-s">
+	<link rel="stylesheet" href="{% static 'css/customer_record.css' %}">	
+    <title>سجل العميل</title>
+</head>
+<body>
+
+<article>
+    <table>
+        <caption>
+            <label for="from_date">سجل العميل :{{name.cus_name}}</label>
+        </caption>
+       
+        <colgroup>
+            <col span="1" class="column">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>رقم الحجز</th>
+                <th>الحجز</th>
+                <th>تاريخ الحجز</th>
+                <th>مبلغ الحجز</th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+            {% if repo_c.exists %}
+            {% for i in repo_c %}
+            <tr>
+                <td>{{i.id}}</td>
+                <td>{{i.chalits}}</td>
+                <td>{{i.res_cha_date}}</td>
+                <td>{{i.res_cha_price}}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+            {% if repo_a.exists %}
+            {% for j in repo_a %}
+            <tr>
+                <td>{{j.id}}</td>
+                <td>{{j.apartments}}</td>
+                <td>{{j.login_date}}</td>
+                <td>{{j.res_price}}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+           
+
+        </tbody>
+    </table>
+    <button onclick="" class="btn2">طباعة</button>
+</article>
+    
+</body>
+</html>

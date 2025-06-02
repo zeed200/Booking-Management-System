@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+    <div class="container_CS1" style="margin-right: 30%;">
+
+        <div class="data_CS1" style="text-align: center;">
+            <h1>المحتويات</h1>
+            {% for i in con %}
+            <div class="cn_CS1">
+            <div class="right_CS1">
+                <p>{{i.con_name}} : </p>
+                <p>{{i.con_price}}</p>
+            </div>
+            <div class="input-field_CS1" style="position: absolute; right: 50%;" >
+              <input type="text" placeholder="المبلغ المقدر"></div>
+          
+            <div class="input-field_CS1">
+                <input type="text" placeholder="البيان">
+                <div class="check_CS1">
+                    <input type="checkbox">
+                </div>
+              </div>
+            </div>
+            <hr>
+            {% endfor %}
+            
+            
+          </div>
+          <div class="button-container_CS1">
+            <button type="submit" class="button_CS1">حفظ</button>
+          </div>
+        </div>
+        
+{% endblock %}        
+

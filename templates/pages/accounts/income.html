@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+
+ <dev class="allform">
+  <form  method="POST">
+    {% csrf_token %}
+      <div class="container">
+
+        <div class="input-field">
+          <label for="nationality">{{form.fund.label}}</label>
+          {{form.fund}}
+        </div>
+      </div>
+
+      <div class="container">
+
+
+        <div class="input-field">
+          <label for="date-of-arrival">التاريخ</label>
+          {{form.pay_date}}
+        </div>
+
+      <div class="input-field">
+        <label >الحجز</label>
+        <select id="reserve" >
+          
+          <option value="apa">شقه</option>
+          <option value="cha">شاليه</option>
+        </select>
+      </div>
+    </div>
+</div>
+    <div class="section">
+
+        <div class="container">
+
+          <div class="input-field">
+            <label for="id-number">المبلغ </label>
+            {{form.pay_amountinside}}
+          </div>
+
+      <div class="input-field">
+        <label for="id-number">رقم الحجز</label>
+        {{form.reservecha}}
+        {{form.reserveape}}
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="input-field">
+        <label for="id-number">استلمت بواسطة</label>
+        {{form.user}}
+      </div>
+
+ 
+      <div class="input-field">
+        <label for="nationality">اسم العميل</label>
+        {{form.customers}}
+      </div>
+</div>
+</div>
+    <div class="section">
+
+      <div class="input-field">
+        <label for="id-number">ملاحظات</label>
+        {{form.pay_notice}}
+      </div>
+
+    </div>
+
+    <div class="button-container">
+      <button type="submit" class="button">حفظ</button>
+    </div>
+    <div style="display: none;">
+      {{form.pay_amountoutside}}
+    </div>
+  </form>
+ </dev>
+
+ {% endblock %}
+ {% block javascript %}
+ <script>
+  $("#reserve").change(function(){
+    var vv = $(this).val();
+    if (vv == "cha"){
+      $("#id_reservecha").show();
+      $("#id_reserveape").hide();
+     
+    }
+    else {
+      $("#id_reservecha").hide();
+      $("#id_reserveape").show();
+      $("#id_reserveape").change(function(){
+         var idresap = $(this).val();
+        
+      });
+    }
+  });
+  $("#reserve").removeAttr("name");
+ </script>
+ <script>
+  $("#id_reservecha").change(function(){
+         var idresch = $(this).val();
+         $.ajax({
+          dataType:'json',
+          url:'/cuscha',
+          data:{'idresch':idresch},
+
+          success: function(data){
+            $("#id_customers").val(data.cname);
+          }
+         });
+      });
+ </script>
+  <script>
+    $("#id_reserveape").change(function(){
+           var idresap = $(this).val();
+           $.ajax({
+            dataType:'json',
+            url:'/cusapa',
+            data:{'idresap':idresap},
+  
+            success: function(data){
+              $("#id_customers").val(data.cname);
+            }
+           });
+        });
+   </script>
+ {% endblock %}

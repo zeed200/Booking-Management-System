@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=divce-width, initial-s">
+	<link rel="stylesheet" href="{% static 'css/rent_records.css' %}">	
+    <title>سجل الحجوزات</title>
+</head>
+<body>
+
+<article>
+    <table>
+        
+        <colgroup>
+            <col span="1" class="column">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>رقم الحجز</th>
+                <th>شقة / شالية</th>
+                <th>رقم الشقة / الشالية</th>
+                <th>التاريخ</th>
+                <th>اسم العميل</th>
+                <th>تفاصيل</th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+            {% for i in reserve_c %}
+            <tr>
+                <td>{{i.id}}</td>
+                <td>شالية</td>
+                <td>{{i.chalits}}</td>
+                <td>{{i.res_cha_date}}</td>
+                <td>{{i.customers}}</td>
+                <td><button class="btn"><a href="{% url 'apdate_chalih_book' i.id %}" style="text-decoration: none; color: aliceblue;">تفاصيل</a></button></td>
+            </tr>
+            {% endfor %}
+            {% for j in reserve_a %}
+            <tr>
+                <td>{{j.id}}</td>
+                <td> شقة </td>
+                <td>{{j.apartments}}</td>
+                <td>{{j.login_date}}</td>
+                <td>{{j.customers}}</td>
+                <td><button class="btn"><a href="{% url 'apdate_apartment_book' j.id %}" style="text-decoration: none; color: aliceblue;">تفاصيل</a></button></td>
+            </tr>
+            {% endfor %}
+
+           
+        </tbody>
+    </table>
+    <button onclick="" class="btn2">طباعة</button>
+</article>
+    
+</body>
+</html>

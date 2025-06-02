@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+
+  <div class="acc-card-container">
+    <a href="{% url 'expenses' %}" class="btn" >
+		<div class="acc-card">
+			<div class="acc-card-content">
+				<h3>المصروفات </h3>
+			</div>
+		</div>
+    </a>
+  </div>
+
+  <div class="acc-card-container">
+    <a href="{% url 'income' %}" class="btn" >
+		<div class="acc-card">
+			<div class="acc-card-content">
+				<h3>المقبوضات</h3>
+			</div>
+		</div>
+    </a>
+  </div>
+  
+  <div class="acc-card-container">
+    <a href="{% url 'mor' %}" class="btn" >
+		<div class="acc-card">
+			<div class="acc-card-content">
+				<h3>الرهونات</h3>
+			</div>
+		</div>
+    </a>
+  </div>
+
+  {% endblock %}
+
+   

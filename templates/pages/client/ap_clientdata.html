@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<div class="allform">
+  <form  method="POST">
+      {% csrf_token %}
+
+
+
+      <div class="container">
+
+        <div class="input-field">
+            <label for="fullname">الاسم الكامل</label>
+            <input type="text" id="fullname" name="cli_fullname" value="{{object.cus_name}}" >
+        </div>
+
+        <div class="input-field">
+            <label for="phone">رقم الهاتف</label>
+            <input type="text" id="phone" name="cli_phone" value="{{object.cus_phone_number}}">
+        </div>
+      </div>
+
+      <div class="container">
+
+
+      <div class="input-field">
+        <label for="email">العنوان</label>
+        <input type="text" id="id-number" name="cli_address" value="{{object.cus_address}}">
+      </div>
+
+      <div class="input-field">
+        <label for="email">العمر</label>
+        <input type="text" id="id-number" name="cli_age" value="{{object.cus_age}}">
+      </div>
+    </div>
+
+    <div class="section">
+
+        <div class="container">
+
+      <div class="input-field">
+        <label for="nationality">الجنس </label>
+        <select id="nationality" name="nationality">
+          <option value="{{object.cus_gender}}">{{object.cus_gender}}</option>
+          <option value="ذكر">ذكر</option>
+          <option value="انثى">انثى</option>
+        </select>
+      </div>
+
+      <div class="input-field">
+        <label for="id-number">رقم هوية الزبون</label>
+        <input type="text" id="id-number" name="cli_id_number" value="{{object.cus_card_id}}">
+      </div>
+    </div>
+</div>
+    <div class="section">
+
+     
+
+    </div>
+
+    <div class="button-container">
+      <button type="submit" class="button">حفظ</button>
+    </div>
+
+  </form>
+</div>
+  {% endblock %}
+  
+

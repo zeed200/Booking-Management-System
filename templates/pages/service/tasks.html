@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+    <div class="container_TK1" style="margin-right: 30%;">
+     <div class="data_TK1">
+      {% for i in chali %}
+        <div class="cusname_TK1">
+        <div class="right_TK1">
+            <h3 id="roomNumber">{{i.cha_name}}</h3>
+        </div>
+          <div class="left_TK1" style="padding-top: 2%;">
+            <a href="{% url 'contents' i.id %}" style="align-self: center;">
+                <p> تشييك</p>
+                </a>
+         </div>
+        </div>
+      
+        <hr>
+        {% endfor %}
+      </div>
+    </div>
+
+{% endblock %}

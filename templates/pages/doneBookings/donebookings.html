@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+<div class="card-container_SRH">
+    <a href="{% url 'apartment_bookings' %}" class="btn_SRH" >
+		<div class="card_SRH">
+			<div class="card-content_SRH">
+				<h3>حجوزات الشقق</h3>
+			</div>
+		</div>
+    </a>
+  </div>
+
+  <div class="card-container_SRH">
+    <a href="{% url 'chalih_bookings' %}" class="btn_SRH" >
+		<div class="card_SRH">
+			<div class="card-content_SRH">
+				<h3>حجوزات الشاليهات</h3>
+			</div>
+		</div>
+    </a>
+  </div>
+
+{% endblock %}

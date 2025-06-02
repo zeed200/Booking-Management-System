@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="cli-container" style="width: 900px;">
+    <div class="repos">
+      <input type="text" placeholder="بحث">
+      <span class="cli-btn"><i class="fas fa-search"></i></span>
+      
+    </div>
+
+    <div class="data">
+      {% for ch in rescha %}
+      <div class="cusname" style="align-items: center;">
+        <p class="p_cli" style="position: static; font-weight: bolder;">{{ ch.customers.cus_name }}</p>
+        <div class="cusname" style="align-items: center;">
+          <p class="p_cli" style="position: absolute; right: 590px; font-weight: bold;">{{ ch.chalits }}</p>
+          <div class="cusname" style="align-items: center;">
+            <p class="p_cli" style="position: absolute; right: 60%; font-weight: bold;"> تاريخ : {{ ch.res_cha_date }} </p>
+          </div>
+        </div>
+        <div class="left_clt" style="position: absolute; right: 1130px; margin-bottom: 10px; background-color: #247dcf; padding: 5px; height: 40px;">
+          <a href="{% url 'entering_people' ch.id  %}">
+            <i name="apdate" method="POST">الأشخاص</i>
+          </a>
+        </div>  
+      </div>
+      <hr>  
+      {% endfor %}
+    </div>
+</div>  
+{% endblock %}
+
+
+
+

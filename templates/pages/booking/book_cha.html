@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+
+<form class="form_CB" method="post">
+  {% csrf_token %}
+    <div class="container_CB1">
+      <div class="input-field_CB2" style="width: 40%;">
+          <label class="label_CB3">الاسم الكامل</label>
+          {{form.customers}}
+          <a href="{% url 'clientdata' %}" style=" color: #000;">
+          <i class="fas fa-add"></i>
+        </a> 
+      </div>
+  
+  <div class="section_CB3">
+    <div class="input-field_CB2" style="position: absolute;top: 35%; right: 27%;">
+      <label class="label_CB3">تاريخ الحجز</label>
+      <input type="text" id="date_of_enter" style="width: 214%; position: absolute;top: 100%; right: 15%;">
+    </div>
+    <div class="input-field_CB2" style="position: absolute;top: 35.3%; right: 40%; width: 10%;">
+        <label class="label_CB3">رقم الشاليه </label>
+        <select id="nationality" >
+            <option value="first_bunch">شاليه 1 </option>
+            <option value="second_bunch">شاليه 2  </option>
+            <option value="third_bunch">شاليه 3  </option>
+
+        </select>
+      </div>
+    <div class="input-field_CB2" style="position: absolute; top: 35.3%; right: 55%; width: 90px; ">
+      <label class="label_CB3">وقت الدخول</label>
+        <input type="text" id="id_login_time" style="width: 110px;">
+      </div>
+  </div>
+  </div>
+
+  <div class="section_CB3">
+      
+    </div>
+    <div class="input-field_CB2"  style="position: absolute; left: 350px; top: 35.3%; width: 119px;" >
+      <label class="label_CB3">وقت الخروج</label>
+        <input type="text" id="id_exit_time" >
+      </div>
+  </div>
+<div class="section_B5">
+  <div class="input-field_CB2" style="margin-top: 14%; width: 330px;">
+    <label class="label_CB3">اختيار الباقة </label>
+    {{form.bunch}}
+  </div>
+  <div class="input-field_CB2" style="margin-right: 90px; margin-top: 14%" >
+    <label class="label_CB3" style="padding-right: 8%;">السعر </label>
+    {{form.res_cha_price}}
+  </div>
+</div>
+  
+  
+  <div class="input-field_CB2">
+    <label class="label_CB3">ملاحظات </label>
+    <textarea placeholder="أكتب الملاحظات" style="width: calc(100% - 5%);"></textarea>
+  </div>
+
+  <div class="button-container_CB5">
+    <button type="submit" class="button_CB5">حجز الشاليه</button>
+  </div>
+
+</form>
+
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+  $("#date_of_enter").change(function(){
+ var resdate = $(this).val();
+ $.ajax({
+  dataType:'json',
+  url:'/daterescha',
+  data:{'resdate':resdate},
+  
+  success: function(data){
+    console.log(data.eq);
+   
+  }        
+ });
+}); 
+
+</script>
+
+<script>
+  $("#id_bunch").change(function(){
+   var idbunch = $(this).val();
+   $.ajax({
+    dataType:'json',
+    url:'/validate',
+    data:{'idbunch':idbunch},
+    
+    success: function(data){
+     $("#id_res_cha_price").val(data.pr);
+     $("#id_login_time").val(data.en);
+     $("#id_exit_time").val(data.ex); 
+     $("#price").text(data.pr);   
+    }        
+   });
+  });  
+</script>
+
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+   
+      
+
+
+
+    <div class="container" style="height: 68%; ">
+        <h2 style="text-align: center; position: relative; right: 26%;">تغيير كلمة المرور</h2>
+        <form>
+            <div class="form-group" style="margin-top: 17%; text-align: right; position: absolute; bottom: 60%; width: 27%; right: 36%; ">
+                <label for="current-password">كلمة المرور الحالية</label>
+                <input type="password" id="current-password" name="current-password" required>
+            </div>
+            <div class="form-group" style="text-align: right; position: absolute; bottom: 45%; width: 27%; right: 36%;">
+                <label for="new-password">كلمة المرور الجديدة</label>
+                <input type="password" id="new-password" name="new-password" required>
+            </div>
+            <div class="form-group" style="text-align: right; position: absolute; bottom: 30%; width: 27%; right: 36%;">
+                <label for="confirm-password">تأكيد كلمة المرور الجديدة</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+            <div class="form-group" style="text-align: right; position: absolute; bottom: 19%; width: 27%; right: 36%;">
+                <button type="submit">تغيير كلمة المرور</button>
+            </div>
+        </form>
+    </div>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #dfe9f5;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          margin: 0;
+      }
+      .container {
+          background-color: #ffffff;
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          width: 80%;
+          max-width: 400px;
+          margin: 20px;
+      }
+    
+      .container h2 {
+          text-align: center;
+          margin-bottom: 20px;
+          font-size: 1.5em;
+      }
+    
+      .form-group {
+          margin-bottom: 15px;
+      }
+    
+      .form-group label {
+          display: block;
+          margin-bottom: 5px;
+      }
+    
+      .form-group input {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          box-sizing: border-box;
+      }
+    
+      .form-group button {
+          width: 100%;
+          padding: 10px;
+          background-color: #007bff;
+          border: none;
+          border-radius: 5px;
+          color: #ffffff;
+          font-size: 16px;
+          cursor: pointer;
+          box-sizing: border-box;
+      }
+    
+      .form-group button:hover {
+          background-color: #0056b3;
+      }
+    
+    </style>
+    {% endblock %}
+   

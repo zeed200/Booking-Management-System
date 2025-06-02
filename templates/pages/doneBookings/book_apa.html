@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+
+<form class="form_CB" method="post">
+
+    <div class="container_CB1">
+      <div class="input-field_CB2" style="width: 40%;">
+          <label class="label_CB3">الاسم الكامل</label>
+          {{form.customers}}
+          <a href="{% url 'clientdata' %}" style=" color: #000;">
+          <i class="fas fa-add"></i>
+        </a> 
+      </div>
+  <div class="section_CB3">
+    <div class="input-field_CB2" style="position: absolute;top: 35%; right: 27%;">
+      <label class="label_CB3">تاريخ الدخول</label>
+      <input type="text" id="date_of_enter" style="width: 214%; position: absolute;top: 100%; right: 1%;">
+    </div>
+    <div class="input-field_CB2" style="position: absolute;top: 35%; right: 41%;">
+      <label class="label_CB3">تاريخ الخروج</label>
+      <input type="text" id="date_of_leave" style="width: 214%; position: absolute;top: 100%; right: 1%;">
+    </div>
+    <div class="input-field_CB2" style="position: absolute;top: 35%; right: 61%; width: 10%;">
+      <label class="label_CB3">رقم الشقة </label>
+      {{form.apartments}}
+    </div>
+  </div>
+  <div class="section_CB3">
+    </div>
+  </div>
+  <div class="input-field_CB2" style="margin-right: 10px; margin-top: 14%" >
+    <label class="label_CB3">السعر </label>
+    <input type="price" id="price" style=" margin-left: 70%; width: 30%; font-size: 150%; ">
+  </div>
+<div class="section_B5">
+  <div class="input-field_CB2" style="position: absolute; top: 55%; right: 50%; width: 20%;">
+    <label class="label_CB3" style="position: absolute; right: 60%;">عدد الليالي : 5 </label>
+  </div>
+</div>
+  <div class="input-field_CB2">
+    <label class="label_CB3">ملاحظات </label>
+    <textarea placeholder="أكتب الملاحظات" style="width: calc(100% - 5%);"></textarea>
+  </div>
+  <div class="button-container_CB5">
+    <button type="submit" class="button_CB5">حجز الشاليه</button>
+  </div>
+
+</form>
+
+
+{% endblock %}

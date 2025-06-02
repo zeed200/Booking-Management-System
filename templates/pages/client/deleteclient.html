@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content%}
+    
+
+        <div class="container_Dlt2" > <br>
+            <i class="fas fa-data" style="font-size: x-large; color: white; font-weight: bold;">هل تريد حذف العميل بالتأكيد ؟</i>
+            <br> <hr>
+            
+            <div class="left_Dlt" style="cursor: pointer;">
+                {% if object == object.Customers_id %}
+                    <a href="{% url 'client' %}">
+                    <i class="fas fa-data" style="color: white; " type="submit" method="POST"  name="delete"> حذف </i>
+                    {% csrf_token %}
+                    </a>
+                    {%endif%}
+            </div>
+            
+            <div class="right_Dlt">
+                <a href="{% url 'client' %}">
+                    <i class="fas fa-data" style="color: white;" >إلغاء الحذف</i>
+                    </a>
+            </div>
+        </div>
+       
+        {% endblock %}
+    
+    

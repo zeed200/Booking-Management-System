@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+  <div class="cli-container">
+    <div class="repos">
+      <input type="text" placeholder="بحث" id="searchbox">
+      <span class="cli-btn"><i class="fas fa-search"></i></span>
+      <span class="cli-btn"><a href="{% url 'mortgaga' %}"><i class="fas fa-add"></i></a></span>
+    </div>
+
+  <div class="data" id="customer">
+    {% for i in mor %}
+    <div class="cusname" style="align-items: center;" id="cusname" title="cusname">
+      <p class="p_cli" style="position: static;">{{i.id}}  :  {{i.reservecha}}</p>
+	  <p class="p_cli" style="position: static; margin-right: 30%;"> {{i.mor_type}} </p>
+      <div class="left_clt" style="position: absolute; right: 75%;  background-color: #247dcf; padding: 5px;border-radius: 5px;">
+        <a href="{% url 'st_mor' i.id %}">
+          <i name="apdate" method="POST">تسليم</i>
+          {% csrf_token %}
+        </a>
+      </div> 
+   
+    </div>
+    
+    {% endfor %}
+  </div>
+  
+
+ 
+ </div>
+
+ {% endblock %}
+
+  

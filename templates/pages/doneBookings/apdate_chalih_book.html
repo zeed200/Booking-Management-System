@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+
+
+{% block content%}
+
+
+<form class="form_CB" method="POST" dir="rtl">
+              {% csrf_token %}
+              <div class="input-field_CB2" style="direction: rtl;">
+                <label class="label_CB3" style="margin-left: 530px;">{{form.customers.label}}</label>
+               {{form.customers}}
+               <a href="{% url 'clientdata' %}" style=" color: #000;">
+                <i class="fas fa-add"></i>
+                </a>
+               </div>
+
+               <div class="section_CB3">
+                  <div class="input-field_CB2" style=" position: relative; left: 360px; bottom: 5px; width: 170px;">
+                  <label class="label_CB3">{{form.res_cha_date.label}} </label>
+                  {{form.res_cha_date}}
+                  </div>
+
+                  <div class="input-field_CB2" style="top: 223px; position: absolute; right: 770px; width: 119px;">
+                  <label class="label_CB3"> {{form.login_time.label}} </label>
+                  {{form.login_time}}
+                  </div>
+                </div>
+
+                <div class="section_CB3">
+                  <div class="input-field_CB2"  style="margin-top: 17px; width: 119px;">
+                    <label class="label_CB3">{{form.exit_time.label}}</label>
+                    {{form.exit_time}}
+                    </div>
+                </div>
+
+                <div class="section_B5">
+                  <div class="input-field_CB2" style="margin-top: 10px; width: 330px; ">
+                    <label class="label_CB3">{{form.bunch.label}}</label>
+                    {{form.bunch}}
+                  </div>
+                  <div class="input-field_CB2" style="margin-right: 100px; margin-top: 38px; " >
+                    <label class="label_CB3" style="position: absolute; left: 600px;">{{form.res_cha_price.label}}</label>
+                    {{form.res_cha_price}}
+                  </div>
+                </div>
+                <div style="display: none;">
+                  {{form.chalits}}
+                  {{form.user}}
+                </div>
+                
+  <div class="button-container_CB5" style="margin-top: 20px;">
+    <button type="submit" class="button_CB5">حجز الشاليه</button>
+  </div>
+  
+  <div class="container_B9" style="height: 473px; width: 300px;" >
+  
+    <label class="label_B9" style="position: absolute; right: 5px;">معلومات الشاليه</label> <br><br>
+    <hr>
+    <label class="label_B9_1" style="position: absolute; right: 2px"> الطابق :   التاسع</label>
+    <label class="label_B9_1" style="position: absolute; left: 40px;">   {{ch.cha_name}}   </label>
+    <label class="label_B9_1"  style="position: absolute; top: 150px; right: 2px; margin-top: 25px;"> وصف الشاليه : </label><br>
+    <br> <br> <br> <br> <br> <hr> <br> 
+    <label class="label_B9_1" style="font-size: x-large;padding-top: 10px; position: absolute; right: 2px; bottom: 137px;"> الإجمالي  : </label> 
+    <label class="label_B9_1" id="price" style="font-size: x-large; font-weight: bold; margin-top: 10px;position: absolute; right: 115px;bottom: 135px;">00.000 </label> <br>
+    <label class="label_B9_1" style="font-size: larger;position: absolute; bottom: 80px; right: 2px;">المدفوع :</label>
+    <label class="label_B9_1" style="font-size: larger; font-weight: bold; margin-top: 10px;position: absolute; right: 115px;bottom: 80px;">00.000 </label>
+    <label class="label_B9_1" style="font-size: larger;position: absolute; bottom: 40px; right: 2px;">المتبقي :</label>
+    <label class="label_B9_1" style="font-size: larger; font-weight: bold; margin-top: 10px;position: absolute; right: 115px;bottom: 40px;">00.000 </label>
+  </div>
+  
+
+</form>
+
+{% endblock %}
+
+{% block javascript %}
+
+<script>
+  var price = $('#id_res_cha_price').val();
+  $('#price').text(price);
+</script>
+
+{% endblock %}

@@ -1,0 +1,66 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: azure;
+}
+table {
+     border: 1px solid #000;
+     border-collapse: collapse;
+     align-items: center;
+     width: 700px;
+}
+
+th , td {
+    border: 1px solid #4CAF50;
+    padding: .5rem;
+}
+caption{
+    font-size: 1.1rem;
+    font-weight: bold;
+    background: #4CAF50;
+    padding: .3rem 0;
+}
+thead {
+    background: #444;
+    color: #fff;
+}
+tbody tr:nth-child(even) {
+    background: azure;
+}
+label {
+    color: #fff;
+}
+.btn1 {
+    display: inline-flex;
+    background-color: #444;
+    color: #fff;
+    border: 10px azure;
+    height: 25px;
+    width: 45px;
+    text-align: center;
+    align-items: center;
+    font-size: medium;
+    border-radius: 5px;
+}
+.btn {
+    background-color: #4CAF50;
+    color: #fff;
+}
+.btn2 {
+    display: inline-flex;
+    background-color: #4CAF50;
+    color: #fff;
+    border: 10px azure;
+    height: 45px;
+    width: 70px;
+    text-align: center;
+    align-items: center;
+    font-size: medium;
+    border-radius: 5px;
+    border-width: 5px;
+    border-style: double;
+    border-color: #fff;
+    margin: 5px;
+    padding-right: 12px;
+}

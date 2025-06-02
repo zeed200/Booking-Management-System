@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+
+
+{% block content%}
+
+<form class="form_CP1" method="POST">
+    {% csrf_token %}
+    <div class="container_CP2">
+        <p style="float: right; margin-right: 20px;"> الحجز بأسم</p>
+        {{form.reservecha}}
+       
+      <div class="input-field_CP3" style="margin-top: 10px;">
+          <label class="label_CP4" style="margin-right: 30px;">{{form.peo_name.label}}</label>
+          {{form.peo_name}}
+      </div>
+    </div>
+    <div class="container_CP3">
+    <div class="input-field_CP3">
+        <label class="label_CP4" style="margin-left: 90px;">{{form.peo_age.label}}</label>
+        {{form.peo_age}}
+    </div>
+
+  <div class="input-field_CP3" >
+    <label class="label_CP4">{{form.peo_card_number.label}}</label>
+    {{form.peo_card_number}}
+  </div>
+    </div>
+
+   <div style="display: none;">
+    
+    {{form.user}}
+   </div>
+
+  <div class="button-container_CP6" style="margin-top: 10px;">
+    <button type="submit" class="button_CP6">إضافة الشخص</button>
+  </div>
+</div>
+
+<article class="article_CP1">
+    <table class="table_CP1">
+        
+        <colgroup>
+            <col span="1" class="column">
+        </colgroup>
+        <thead class="thead_CP1">
+            <tr>
+                <th>م </th>
+                <th>اسم الشخص </th>
+                <th>العمر </th>
+                <th>رقم الهوية</th>
+                
+            </tr>
+        </thead>
+
+        <tbody class="tbody_CP1">
+            {% for p in peo %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{p.peo_name}}</td>
+                <td>{{p.peo_age}}</td>
+                <td>{{p.peo_card_number }}</td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot class="tfoot_CP1">
+        </tfoot>
+    </table>
+</article>
+</form>
+{% endblock %}

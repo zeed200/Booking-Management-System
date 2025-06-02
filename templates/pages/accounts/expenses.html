@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+  
+  
+{% block content%}
+
+
+ <dev class="allform">
+  <form  method="POST">
+    {% csrf_token %}
+      <div class="container">
+
+        <div class="input-field">
+          <label for="nationality">{{form.fund.label}} </label>
+          {{form.fund}}
+        </div>
+      </div>
+
+      <div class="container">
+
+
+        <div class="input-field">
+          <label for="date-of-arrival">التاريخ</label>
+          {{form.pay_date}}
+        </div>
+
+      <div class="input-field">
+        <label >النوع</label>
+        <select id="type" >
+          
+          <option value="apa">مصروفات عامة</option>
+          <option value="cha">مرتجع حجز</option>
+        </select>
+      </div>
+    </div>
+</div>
+    <div class="section">
+
+        <div class="container">
+
+          <div class="input-field">
+            <label>المبلغ</label>
+            {{form.pay_amountoutside}}
+          </div>
+
+      <div class="input-field">
+        <label>لاجل</label>
+        {{form.f_or}}
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="input-field">
+        <label>اسم المستلم</label>
+        {{form.recipient_name}}
+      </div>
+
+ 
+      <div class="input-field">
+        <label for="id-number">ملاحظات</label>
+        {{form.pay_notice}}
+      </div>
+</div>
+</div>
+   
+
+    <div class="button-container">
+      <button type="submit" class="button">حفظ</button>
+    </div>
+
+  </form>
+ </dev>
+
+ {% endblock %}

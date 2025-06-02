@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+<div class="cli-container" style="width: 900px;">
+    <div class="repos">
+      <input type="text" placeholder="بحث">
+      <span class="cli-btn"><i class="fas fa-search"></i></span>
+      <span><select style="width: 100%; height: 100%;" id="bill" >
+          
+        <option value="in">قبض</option>
+        <option value="ou">صرف</option>
+      </select></span>
+    </div>
+  <div id="in">
+  {% for b in ta_bill %}
+  <div class="data">
+    
+    <div class="cusname" style="align-items: center;">
+
+
+      <p class="p_cli" style="position: static; font-weight: bolder;">{{b.customers}}</p>
+
+        <div class="cusname" style="align-items: center;">
+          <p class="p_cli" style="position: absolute; right: 830px; font-weight: bold;"> تاريخ : {{b.pay_date}} </p>
+        </div> 
+
+      <div class="left_clt" style="position: absolute; right: 1125px;  background-color: #247dcf; padding: 5px; height: 40px;">
+        <a href="{% url 'bill'  b.id %}">
+          <i >عرض</i>
+        </a>
+      </div>  
+     
+       
+
+      
+    </div>
+    
+  </div>
+   {% endfor %} 
+  </div>
+   
+  <div id="out" class="hide">
+  {% for n in t_bill %}
+  <div class="data">
+    
+    <div class="cusname" style="align-items: center;">
+
+
+      <p class="p_cli" style="position: static; font-weight: bolder;">{{n.recipient_name}}</p>
+
+        <div class="cusname" style="align-items: center;">
+          <p class="p_cli" style="position: absolute; right: 830px; font-weight: bold;"> تاريخ : {{n.pay_date}} </p>
+        </div> 
+
+      <div class="left_clt" style="position: absolute; right: 1125px;  background-color: #247dcf; padding: 5px; height: 40px;">
+        <a href="{% url 'out'  n.id %}">
+          <i >عرض</i>
+        </a>
+      </div>  
+     
+       
+
+      
+    </div>
+    
+  </div>  
+  {% endfor %} 
+</div>
+
+</div>  
+ {% endblock %}
+ {% block javascript %}
+  <script>
+    $('#bill').change(function(){
+      var v = $(this).val();
+      if (v == "ou"){
+      $("#out").show();
+      $("#in").hide();     
+      }
+      else {
+      $("#out").hide();
+      $("#in").show();
+      }
+    });
+
+  </script>
+
+ {% endblock %}
+
+  

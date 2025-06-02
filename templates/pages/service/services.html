@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+<div class="card-container_SRH" style="position: absolute; right: 51%;">
+    <a href="{% url 'done_tasks' %}" class="btn_SRH" >
+		<div class="card_SRH">
+			<div class="card-content_SRH">
+				<h3>المهام المنجزة</h3>
+			</div>
+		</div>
+    </a>
+  </div>
+
+  <div class="card-container_SRH" style="position: absolute; right: 30%;">
+    <a href="{% url 'tasks' %}" class="btn_SRH" >
+		<div class="card_SRH">
+			<div class="card-content_SRH">
+				<h3>مهام اليوم</h3>
+			</div>
+		</div>
+    </a>
+  </div>
+
+  <div class="card-container_SRH" style="position: absolute; right: 72%;">
+    <a href="{% url 'check_people' %}" class="btn_SRH" >
+		<div class="card_SRH">
+			<div class="card-content_SRH">
+				<h3>دخول الأشخاص</h3>
+			</div>
+		</div>
+    </a>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href= "{% static 'css/bootstrap.css' %}"/>	
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}"/>
+    <title>طباعة الكروت</title>
+</head>
+<body>
+    <div class="row">
+        {% for barcode in barcodes %}
+        <div class="col-3" >
+            
+            <div class="printing_cards" style="width: 100%; border-style: groove;margin: 10px; border-width: 2px; border-color: black; align-items: center;" >
+                <label class="p_person_name" style="color: black; width: 100%; text-align: center;">{{ barcode.name }}</label>
+                <img src="data:image/png;base64,{{ barcode.barcode }}" alt="Barcode" style="width: 100%; top: 0%;">
+            </div>
+        </div>           
+        {% endfor %}
+    </div> 
+    <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>      
+</body>
+</html>

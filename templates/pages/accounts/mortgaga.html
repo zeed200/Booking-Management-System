@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<dev class="allform">
+  <form  method="POST">
+       {% csrf_token %}
+      <div class="container">
+
+        <div class="input-field">
+          <label style="margin-right: 40%;">صندوق الرهونات </label>
+          
+        </div>
+      </div>
+      <label style="float: right; margin-right: 15%;">رقم الحجز</label>
+      <input type="text" id="reserve_id" name="reservecha" style="width: 40%; float: right; margin-right: 5%;">
+      <div class="container">
+        
+        <div class="input-field">
+            <label>اسم الزبون</label>
+            <input type="text" id="customers_id">
+          </div>
+
+        <div class="input-field">
+          <label for="date-of-arrival">تاريخ</label>
+          <input type="text" id="date-of-arrival" name="mor_date">
+        </div>
+
+    
+    </div>
+</div>
+    <div class="section">
+
+        <div class="container">
+        
+          
+
+          <div class="input-field">
+            <label for="nationality" >نوع الرهن</label>
+            <select id="mo_type" name="mor_type" style=" float: right;">
+              <option value="سلاح">سلاح</option>
+              <option value="ذهب">ذهب</option>
+              <option value="نقد">نقد</option>
+            </select>
+          </div>
+
+          <div class="hide" id="mo_price">
+          <div class="input-field">
+            <label for="id-number">المبلغ</label>
+            <input type="text" id="id-number" name="mor_amaunt" value="0.0">
+          </div>
+          </div>
+         
+    </div>
+
+    <div class="container">
+
+ 
+    
+</div>
+</div>
+    <div class="section">
+
+      <div class="input-field">
+        <label for="id-number"> بيان الرهن (ملاحظات)</label>
+        <input type="text" id="id-number" name="mor_notice">
+      </div>
+
+    </div>
+
+    <div class="button-container">
+      <button type="submit" class="button">حفظ</button>
+    </div>
+
+  </form>
+</dev>  
+
+  {% endblock %}
+
+  {% block javascript %}
+  <script>
+    $("#reserve_id").change(function(){
+           var idresch = $(this).val();
+           $.ajax({
+            dataType:'json',
+            url:'/cuscha',
+            data:{'idresch':idresch},
+  
+            success: function(data){
+              $("#customers_id").val(data.cename);
+            }
+           });
+        });
+   </script>
+    <script>
+      $('#mo_type').change(function(){
+       var ty = $(this).val(); 
+       if(ty == "نقد"){
+         $('#mo_price').show()         
+       }
+       else{
+         $('#mo_price').hide()
+       }
+      })
+     </script>
+ {% endblock %}

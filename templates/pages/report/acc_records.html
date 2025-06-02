@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=divce-width, initial-s">
+	<link rel="stylesheet" href="{% static 'css/acc_records.css' %}">	
+    <title>سجل الحسابات</title>
+</head>
+<body>
+
+<article>
+    <table>
+        <caption>
+            <label for="from_date">الصندوق </label>
+            
+            <label for="to_date">يمني </label>
+          
+        </caption>
+        <colgroup>
+            <col span="1" class="column">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>رقم العملية</th>
+                <th>المبلغ 
+                    مدين
+                </th>
+                <th>المبلغ 
+                    دائن
+                </th>
+             
+
+                <th>التاريخ</th>
+                <th>البيان</th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+            {% for i in repo %}
+            <tr>
+                <td>{{i.id}}</td>
+                <td>{{i.pay_amountinside}}</td>
+                <td>{{i.pay_amountoutside}}</td>
+                <td>{{i.pay_date}}</td>
+                <td>{{i.pay_notice}}</td>
+            </tr>
+            {% endfor %}
+            
+         
+        </tbody>
+        <tfoot>
+            <tr>
+                <td align="center" colspan="2"> إجمالي الرصيد الحالي : 88.000 ريال</td>
+                <td align="center" colspan="2"> إجمالي الرصيد الحالي : 88.000 ريال</td>
+            </tr>
+        </tfoot>
+    </table>
+    <button onclick="" class="btn2">طباعة</button>
+</article>
+    
+</body>
+</html>

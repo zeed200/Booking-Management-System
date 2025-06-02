@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+<form class="form_B1" method="POST" >
+  {% csrf_token %}
+    <div class="container_B2">
+
+      <div class="input-field_B3">
+          <label class="label_B4">{{form.customers.label}}</label>
+          {{form.customers}}
+          <a href="{% url 'clientdata' %}" style=" color: #000;">
+          <i class="fas fa-add"></i> 
+          </a>
+      </div>
+    </div>
+
+  <div class="section_B5">
+    <div class="input-field_B3" style="width: 250px;">
+      <label class="label_B4">{{form.login_date.label}}</label>
+      {{form.login_date}}
+      <p id="error" style="font-size: small; float: right; margin-right: 8px; color: #f10202; display: none; margin-bottom: 0%;">هذا التاريخ محجوز </p>
+    </div>
+  </div>
+
+  <div class="section_B5">
+    <div class="input-field_B3" style="margin-right: 150px; margin-top: 20px; width: 250px;">
+      <label class="label_B4">{{form.exit_date.label}}</label>
+      {{form.exit_date}}
+      <p id="errorex" style="font-size: small; margin-left: 155px; color: #f10202; display: none; margin-bottom: 0%;">التاريخ غير صالح</p>
+    </div>
+  </div>
+
+  <div class="input-field_B3" style="margin-top: 1px; position: absolute; right: 10px;">
+    <label class="label_B4" style="position: absolute; right: 20px;">{{form.res_price.label}}</label>
+    {{form.res_price}}
+  </div>
+  <div>
+  <label class="label_B9_1" style="position: absolute; top: 250px; left: 170px; font-size: larger;"> عدد الليالي : <span id="days">5</span> </label>
+  
+  </div>
+  <div class="input-field_B3" style="margin-top: 20px; position: absolute;right: 5px; bottom: 60px; width: 600px;">
+    <label class="label_B4" style="position: absolute; bottom: 50px;right: 28px; ">{{form.res_notice.label}}</label>
+    {{form.res_notice}}
+  </div>
+  <div style="display: none;">
+    {{form.apartments}}
+    {{form.user}}
+  </div>
+
+  <div class="button-container_B6" style="position: absolute; bottom: 10px;width: 650px;">
+    <button type="submit" class="button_b6">حجز الشقة</button>
+  </div>
+</form>
+
+<div class="container_B9" style="height: 460px; width: 300px;" >
+  <label class="label_B9" style="position: absolute; right: 5px;">معلومات الشقة</label> <br> <br>
+  <hr>
+  <label class="label_B9_1" style="position: absolute; right: 2px"> الطابق :   {{bookap.apa_floor}}</label>
+  <label class="label_B9_1" style="position: absolute; left: 40px;">  {{bookap.apa_name}}  </label>
+  <label class="label_B9_1" style="position: absolute; top: 150px; right: 2px; margin-top: 25px;"> وصف الشقة :{{bookap.apa_discrip}}  </label>
+  <br> <br> <br> <br> <br> <br> <hr>
+  <label class="label_B9_1" style="font-size: x-large;padding-top: 10px; position: absolute; right: 2px; bottom: 137px;"> الإجمالي  : </label> 
+  <label class="label_B9_1" id="price" style="font-size: x-large; font-weight: bold; margin-top: 10px;position: absolute; right: 115px;bottom: 135px;">00.000 </label> <br>
+  <label class="label_B9_1" style="font-size: larger;position: absolute; bottom: 80px; right: 2px;">المدفوع :</label>
+  <label class="label_B9_1" style="font-size: larger; font-weight: bold; margin-top: 10px;position: absolute; right: 115px;bottom: 80px;">00.000 </label>
+  <label class="label_B9_1" style="font-size: larger;position: absolute; bottom: 40px; right: 2px;">المتبقي :</label>
+  <label class="label_B9_1" style="font-size: larger; font-weight: bold; margin-top: 10px;position: absolute; right: 115px;bottom: 40px;">00.000 </label>
+  <input type="hidden" value="{{bookap.apa_price}} " id="apaprice">
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+  $(document).ready(function(){
+    $('#days').mouseenter(function(){
+      const enterdate = new Date($('#id_login_date').val());
+      const exitdate = new Date($('#id_exit_date').val());
+      const oneday = 24 * 60 * 60 * 1000;
+      const daysdiff = Math.floor((exitdate - enterdate) / oneday);
+      $('#days').text(daysdiff);
+      const apaprice = $('#apaprice').val();
+      const totalprice = parseInt(daysdiff) * parseInt(apaprice);
+      $('#id_res_price').val(totalprice);
+      $('#price').text(totalprice);
+    });
+   
+  });  
+</script>
+<script>
+ 
+ $("#id_login_date").change(function(){
+ var resdate = $(this).val();
+ var apaid = $('#id_apartments').val();
+ 
+ $.ajax({
+  dataType:'json',
+  url:'/validateresapa',
+  data:{'resdate':resdate,
+        'apaid':apaid},
+     
+  success: function(data){
+ if(resdate != ""){
+    if (data.valid_resdate){
+       $('#error').show();
+       $('#id_login_date').addClass('error_date');
+    }
+    else if (resdate < data.today){
+          $('#error').show();
+          $('#error').text("التاريخ غير صالح");
+          $('#id_login_date').addClass('error_date'); 
+         }      
+    else{
+      $('#error').hide();
+      $('#id_login_date').removeClass('error_date');
+    }
+  }
+  else{
+    $('#error').hide();
+      $('#id_login_date').removeClass('error_date');
+  }
+}      
+ });
+
+}); 
+$('#id_exit_date').change(function(){
+  var exdate = $('#id_exit_date').val();
+  var lodate = $('#id_login_date').val();
+  if (exdate != ""){
+    if(exdate < lodate){
+      $('#id_exit_date').addClass('error_date'); 
+      $('#errorex').show();
+    }
+    else {
+      $('#id_exit_date').removeClass('error_date'); 
+      $('#errorex').hide();
+    }
+  }
+  else{
+    $('#id_exit_date').removeClass('error_date'); 
+      $('#errorex').hide();
+  }
+});
+
+</script>
+
+{% endblock %}

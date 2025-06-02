@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+<div class="card-container_SRH">
+    <a href="{% url 'report' %}" class="btn_SRH" >
+		<div class="card_SRH">
+			<div class="card-content_SRH">
+				<h3>التقارير</h3>
+			</div>
+		</div>
+    </a>
+  </div>
+
+  <div class="card-container_SRH">
+    <a href="{% url 'bills' %}" class="btn_SRH" >
+		<div class="card_SRH">
+			<div class="card-content_SRH">
+				<h3>السندات</h3>
+			</div>
+		</div>
+    </a>
+  </div>
+
+{% endblock %}

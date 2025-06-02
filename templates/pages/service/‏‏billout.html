@@ -1,0 +1,50 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>billout</title>
+<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}"/>	
+<link rel="stylesheet" href="{% static 'css/all.min.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+</head>
+<body>
+    
+      <div class="row">
+        <div class="col-4">
+            <h3>الجمهورية اليمنية</h3>
+            <h3>{{b.f_name_ar}}</h3>
+            <h5>{{b.f_address_ar}}</h5>
+            <h5 style="margin-top: 10px;">تلفون :{{b.f_phon_ar}}</h5>
+            
+        </div>
+        <div class="col-4">
+            <img class="bill-logo" src="{% static 'image/1.png' %}" alt="" >
+        </div>
+        <div class="col-4">
+            <h3>Republic Of Yemen</h3>
+            <h3>{{b.f_name_en}}</h3>
+            <h5>{{b.f_address_en}}</h5>
+            <h5 style="margin-top: 10px;">Tel:{{b.f_phon_en}}</h5>
+            
+        </div>
+
+        
+      </div>
+      <h2 style="text-align: center;">سند صرف</h2>
+      <div  class="row justify-content-around">
+        <div class="col-3"> رقم السند :{{c.id}} </div>
+        <div class="col-3">التاريخ : {{c.pay_date}}</div>
+      </div>
+      <div style="float: right;  margin-top: 30px; margin-right: 20px;">
+      <p style="font-size: x-large; ">استلمت من الأخ / الأخت : &ThinSpace; {{c.recipient_name}} </p> 
+      <p style="font-size: x-large; ">مبلغ وقدره : &ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThinSpace; {{con.pay_amountoutside}}</p>
+      <p style="font-size: x-large;">لأجل :&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThinSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;  {{c.f_or}} </p> 
+      <p style="font-size: x-large;">ملاحظات : &ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThickSpace;&ThinSpace;&ThinSpace;&ThinSpace;&ThinSpace;&ThinSpace;&ThinSpace;&ThinSpace;&ThinSpace;&ThinSpace;&ThinSpace;&ThinSpace;&ThinSpace;  {{c.pay_notice}}</p> 
+      </div>
+  
+  <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+{% load static%}
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>index</title>
+<link rel="stylesheet" href= "{% static 'css/bootstrap.css' %}"/>	
+<link rel="stylesheet" href="{% static 'css/all.min.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/style.css'%}"/>
+</head>
+
+<body>
+
+   <!--الناف بار-->
+   <nav class="navigation">
+	<p class="branch" style="float: left;"></p>
+	<p class="branch" style="float: left; margin-left: 5%;">اسم المستخدم : {{ request.user.username }}</p>
+	
+</nav>
+<!--الناف بار-->
+<!--السايد بار-->
+<aside>
+	<ul>
+		<li>
+			<a href="#" class="logo">
+				<img src="{% static 'image/1.png' %}" alt="">
+				<span class="nav_item">خدمات فندقية</span>
+			</a>
+		</li>
+		{% for i in gr %}
+		{% if i.name == "res" %}
+		<li><a href="{% url 'index' %}">
+			<i class="fas fa-home"></i>
+			<span class="nav-item">الرئيسية</span>
+			</a></li>
+		{% endif %}	
+		{% if i.name == "res" %}
+		<li><a href="{% url 'donebookings' %}">
+			<i class="fas fa-question-circle"></i>
+			<span class="nav-item">الحجوزات</span>
+			</a></li>
+		{% endif %}	
+		{% if i.name == "acc" %}	
+		<li><a href="{% url 'reports' %}">
+			<i class="fas fa-wallet"></i>
+			<span class="nav-item">التقارير </span>
+			</a></li>
+		{% endif %}	
+		{% if i.name == "acc" %}	
+		<li><a href="{% url 'acc' %}">
+			<i class="fas fa-chart-bar"></i>
+			<span class="nav-item">الحسابات</span>
+			</a></li>
+		{% endif %}	
+			{% if i.name == "ser" %}	
+		<li><a href="{% url 'services' %}">
+			<i class="fas fa-tasks"></i>
+			<span class="nav-item">الخدمات</span>
+			</a></li>
+			{% endif %}
+			{% if i.name == "res" %}
+		<li><a href="{% url 'client' %}">
+			<i class="fas fa-user"></i>
+			<span class="nav-item">العملاء</span>
+			</a></li>
+			{% endif %}
+			{% endfor %}
+		<li><a href="{% url 'settings' %}">
+			<i class="fas fa-cog"></i>
+			<span class="nav-item">الأعدادات</span>
+			</a></li>
+		<li><a href="{% url 'logout' %}" class="logout">
+			<i class="fas fa-sign-out-alt"></i>
+			<span class="nav-item">تسجيل الخروج</span>
+			</a></li>
+	</ul>
+</aside>
+<!--السايد بار-->
+
+
+
+    {% block content %}
+
+    {% endblock %}
+
+
+
+
+    <!--الفوتر-->
+    <footer>
+        <p class="fo">	copyright 2024 &copy; All Right Reserved</p>
+    </footer>
+    <!--الفوتر-->
+        
+
+
+
+
+
+  <script src="{% static 'js/js.js' %}"></script>
+  <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.js' %}"></script>
+  <script src="{% static 'js/minified/html5-qrcode.min.js' %}"></script>
+  <script src="{% static 'js/minified/readme.md' %}"></script>
+  {% block javascript %}
+  {% endblock %}
+</body>    
+</html>

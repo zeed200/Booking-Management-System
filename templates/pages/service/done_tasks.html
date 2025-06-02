@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+    <div class="container_TD1" style="margin-right: 30%;" >
+    <div class="data_DT1">
+      {% for i in chali %}
+        <div class="cusname_DT1">
+        <div class="right_DT1">
+            <h3 id="apartment_number">{{i.cha_name}}</h3>
+
+              <div class="input-field_DT1" style="display: inline-flex;margin-right: 150px;">
+                <label class="label_DT1" style="margin-top: 10px;">الوقت </label>
+                <input type="time" id="chick_time">
+              </div>
+            
+        </div>
+          <div class="left_DT1">
+            <a href="{% url 'contents' i.id %}">
+                <i > مراجعة التشييك</i>
+                </a>
+        
+        </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+{% endblock %}
+  
+    
